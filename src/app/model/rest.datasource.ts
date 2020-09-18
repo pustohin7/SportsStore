@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {Http, Request, RequestMethod} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import {Product} from './product.model';
-import {Cart} from './cart.model';
 import {Order} from './order.model';
 import 'rxjs/add/operator/map';
 
@@ -33,6 +32,42 @@ export class RestDataSource {
   getProducts(): Observable<Product[]> {
     // @ts-ignore
     return this.sendRequest(RequestMethod.Get, 'products');
+  }
+
+  saveProduct(product: Product): Observable<Product> {
+    // @ts-ignore
+    return this.sendRequest(RequestMethod.Post, 'products',
+      product, true);
+  }
+
+  updateProduct(product): Observable<Product> {
+    // @ts-ignore
+    return this.sendRequest(RequestMethod.Put,
+      `products/${product.id}`, product, true);
+  }
+
+  deleteProduct(id: number): Observable<Product> {
+    // @ts-ignore
+    return this.sendRequest(RequestMethod.Delete,
+      `products/${id}`, null, true);
+  }
+
+  getOrders(): Observable<Order[]> {
+    // @ts-ignore
+    return this.sendRequest(RequestMethod.Get,
+      'orders', null, true);
+  }
+
+  deleteOrder(id: number): Observable<Order> {
+    // @ts-ignore
+    return this.sendRequest(RequestMethod.Delete,
+      `orders/${id}`, null, true);
+  }
+
+  updateOrder(order: Order): Observable<Order> {
+    // @ts-ignore
+    return this.sendRequest(RequestMethod.Put,
+      `orders/${order.id}`, order, true);
   }
 
   saveOrder(order: Order): Observable<Order> {
