@@ -1,15 +1,16 @@
-import {
-  Directive, ViewContainerRef, TemplateRef, Input, Attribute, SimpleChanges
-} from '@angular/core';
+import {Directive, Input, SimpleChanges, TemplateRef, ViewContainerRef} from '@angular/core';
+
 @Directive({
   // tslint:disable-next-line:directive-selector
   selector: '[counterOf]'
 })
 export class CounterDirective {
+
   constructor(private container: ViewContainerRef,
               // tslint:disable-next-line:ban-types
               private template: TemplateRef<Object>) {
   }
+
   @Input('counterOf')
   counter: number;
 
@@ -22,6 +23,8 @@ export class CounterDirective {
     }
   }
 }
+
 class CounterDirectiveContext {
-  constructor(public $implicit: any) { }
+  constructor(public $implicit: any) {
+  }
 }

@@ -44,7 +44,7 @@ Please enter your state
   <div class="form-group">
     <label>Zip/Postal Code</label>
     <input class="form-control" #zip="ngModel" name="zip"
-           [(ngModel)]="order.zip" required/>
+           [(ngModel)]="order.zip" required minlength="6"/>
     <span *ngIf="submitted && zip.invalid" class="text-danger">
 Please enter your zip/postal code
 </span>
